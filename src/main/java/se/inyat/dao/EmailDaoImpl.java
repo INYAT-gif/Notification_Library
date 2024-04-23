@@ -10,13 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
+/*
 public class EmailDaoImpl implements EmailDao {
+
 
     private List<Email> emailList = new ArrayList<>();
 
+    private static EmailDaoImpl instance;
+/*
+    //Get the only object available
+    public static EmailDaoImpl getInstance(){
+        if (instance == null) {
+            instance = new EmailDaoImpl();
+        }
+        return instance;
 
-    @Override
+
+    /*@Override
     public Email save(Email email) {
         if (email == null) throw new IllegalArgumentException("Email is null.");
         email.setId(UUID.randomUUID().toString());
@@ -36,7 +46,8 @@ public class EmailDaoImpl implements EmailDao {
         existingEmail.setContent(email.getContent());
     }
 
-    @Override
+*/
+        @Override
     public Email find(String id) {
         if (id == null) throw new IllegalArgumentException("Id is null.");
         return emailList.stream()
@@ -59,3 +70,5 @@ public class EmailDaoImpl implements EmailDao {
     }
 
 }
+
+*/
