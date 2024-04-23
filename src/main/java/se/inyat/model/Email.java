@@ -1,34 +1,23 @@
 package se.inyat.model;
-
 public class Email extends Notification {
 
-    //Email is now a subclass of Notification.
-
     private String recipient;
-
     private String subject;
-
     private String content;
 
-//    private byte[] files; can later on add files to email by using a file path.
-
-    public Email (String recipient, String subject, String content) {
+    public Email(String recipient, String subject, String content) {
         super();
-        //this.recipient = recipient;
         setRecipient(recipient);
-        this.subject = subject;
-        this.content = content;
-
+        setSubject(subject);
+        setContent(content);
     }
 
     public String getRecipient() {
-
         return recipient;
     }
 
     public void setRecipient(String recipient) {
-        //is mandatory
-        if (recipient == null) throw new IllegalArgumentException("Recipient cannot be null.");
+        if (recipient == null) throw new IllegalArgumentException("Recipient email is null.");
         this.recipient = recipient;
     }
 
@@ -49,7 +38,7 @@ public class Email extends Notification {
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public String summary() {
+        return super.toString() + " -> Email sent to: " + recipient + " with subject: " + subject;
     }
 }
