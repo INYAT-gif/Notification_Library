@@ -1,4 +1,4 @@
-package se.inyat.DataNotFoundException;
+package se.inyat.exception;
 
 public class DataNotFoundException extends RuntimeException {
 

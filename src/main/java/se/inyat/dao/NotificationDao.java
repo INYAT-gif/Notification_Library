@@ -12,7 +12,10 @@ public interface NotificationDao<T> {//generic interface needs <T>
 
         List<T> findAll();
 
-        // add more methods as needed
+        // List<T> findBySubject(String subject);
+    // List<T> findByRecipient(String recipient);
+    // List<T> findByRecipientAndSubject(String recipient, String subject);
+    // List<T> findByRecipientOrSubject(String recipient, String subject);
     }
 
 

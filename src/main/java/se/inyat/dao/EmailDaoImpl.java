@@ -1,32 +1,38 @@
 package se.inyat.dao;
 
-import se.inyat.DataNotFoundException.DataNotFoundException;
-import  se.inyat.dao.NotificationDao;
+import se.inyat.exception.DataNotFoundException;
 import se.inyat.model.Email;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-/*
+
 public class EmailDaoImpl implements EmailDao {
 
+    private List<Email> emailList;
 
-    private List<Email> emailList = new ArrayList<>();
 
+    //create an object of EmailDaoImpl
     private static EmailDaoImpl instance;
-/*
+
+    //make the constructor private so that this class cannot be
+    //instantiated
+    private EmailDaoImpl(){
+        emailList = new ArrayList<>();
+    }
+
     //Get the only object available
     public static EmailDaoImpl getInstance(){
         if (instance == null) {
             instance = new EmailDaoImpl();
         }
         return instance;
+    }
 
 
-    /*@Override
+    @Override
     public Email save(Email email) {
         if (email == null) throw new IllegalArgumentException("Email is null.");
         email.setId(UUID.randomUUID().toString());
@@ -46,8 +52,7 @@ public class EmailDaoImpl implements EmailDao {
         existingEmail.setContent(email.getContent());
     }
 
-*/
-        @Override
+    @Override
     public Email find(String id) {
         if (id == null) throw new IllegalArgumentException("Id is null.");
         return emailList.stream()
@@ -70,5 +75,3 @@ public class EmailDaoImpl implements EmailDao {
     }
 
 }
-
-*/

@@ -4,6 +4,7 @@ package se.inyat;
 import se.inyat.dao.EmailDao;
 import se.inyat.dao.EmailDaoImpl;
 import se.inyat.model.Email;
+import se.inyat.util.EmailSender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +12,27 @@ import java.util.List;
 public class App
 {
     public static void main( String[] args ) {
+
+        //if we want to make this project as a library we can use this code as below
+        //
         EmailDao dao = EmailDaoImpl.getInstance(); //singleton pattern for EmailDao //emaillist is empty
 
-        dao.save(new Email("test", "test", "test"));
-        System.out.println(email1.summary());
+        try {
+            Email email1 = new Email("test", "test", "test");
+            Email savedEmail1 = dao.save(email1);
 
-       // EmailDao dao2 = new EmailDaoImpl(); we are not allowed to initialize EmailDaoImpl again as it is a singleton class
+            EmailSender.sendEmail(savedEmail1.getRecipient(), savedEmail1.getSubject(), savedEmail1.getMessage());
 
-        Email foundEmail1 = dao.find(email1.getId());
-        System.out.println(foundEmail1.summary());
+            dao.save(new Email("test", "test", "test"));
+            System.out.println(email1.summary());
+
+            // EmailDao dao2 = new EmailDaoImpl(); we are not allowed to initialize EmailDaoImpl again as it is a singleton class
+
+            Email foundEmail1 = dao.find(email1.getId());
+            System.out.println(foundEmail1.summary());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 //tutorialspoint Design Patterns in Java called Singleton Pattern use to check if class is initialized only once and
 // only one instance can be created at a time.
