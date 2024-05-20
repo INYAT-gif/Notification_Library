@@ -1,6 +1,8 @@
 package se.inyat;
 
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import se.inyat.dao.EmailDao;
 import se.inyat.dao.EmailDaoImpl;
 import se.inyat.model.Email;
@@ -9,19 +11,20 @@ import se.inyat.util.EmailSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public class App
-{
+@SpringBootApplication
+public class App {
     public static void main( String[] args ) {
+        SpringApplication.run(App.class, args);
 
         //if we want to make this project as a library we can use this code as below
-        //
+
         EmailDao dao = EmailDaoImpl.getInstance(); //singleton pattern for EmailDao //emaillist is empty
 
         try {
             Email email1 = new Email("test", "test", "test");
-            Email savedEmail1 = dao.save(email1);
+            Email savedEmail = dao.save(email1);
 
-            EmailSender.sendEmail(savedEmail1.getRecipient(), savedEmail1.getSubject(), savedEmail1.getMessage());
+            EmailSender.sendEmail(savedEmail.getRecipient(), savedEmail.getSubject(), savedEmail.getMessage());
 
             dao.save(new Email("test", "test", "test"));
             System.out.println(email1.summary());

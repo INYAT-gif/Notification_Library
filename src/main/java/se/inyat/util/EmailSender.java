@@ -1,15 +1,16 @@
 package se.inyat.util;
 
 import se.inyat.exception.EmailException;
-import sun.jvm.hotspot.debugger.AddressException;
 
+
+import javax.mail.MessagingException;
 import java.util.Properties;
 
 public class EmailSender {
     private static final String USERNAME = "inayatnathani@hotmail.com";
     private static final String PASSWORD = "#####";//add later
 
-    public static void sendEmail(String recipient, String subject, String message) {
+    public static void sendEmail(String recipient, String subject, String message) throws EmailException {
         //can se smtp link later
 
         //Step 1: Set up email server properties
@@ -25,27 +26,11 @@ public class EmailSender {
 
         try {
 
-        } catch (
-
-        )
-
-        //Step 3: Compose the message
-
-        //Step 4: set the sender of the email
-                /*
-                InternetAddress is a class in JavaMail API used to handle email address.
-                It helps in creating, formatting, and
-
-                 */
-        //if som runtimeexception happen how can we manage
-
-    } catch (AddressException e) {
-        throw  new EmailException("Email address is not valid" + e.getMessage());
-
-    } catch (MessagingException e) {
+        } catch (Exception e) {
         throw  new EmailException("Email address is not valid" + e.getMessage());
 
     }
 
-    }
+    } //end of sendEmail
+}
 

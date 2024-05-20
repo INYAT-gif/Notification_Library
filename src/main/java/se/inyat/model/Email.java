@@ -41,4 +41,8 @@ public class Email extends Notification {
     public String summary() {
         return super.toString() + " -> Email sent to: " + recipient + " with subject: " + subject;
     }
+
+    public String getMessage() {
+        return content;
+    }
 }
